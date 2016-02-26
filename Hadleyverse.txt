@@ -1,0 +1,32 @@
+%- https://barryrowlingson.github.io/hadleyverse/#14
+
+
+Beginners
+
+readr
+Reading files
+lubridate
+Date and time handling
+stringr
+Working with text strings
+tidyr
+Make tidy data
+dplyr
+Data manipulation
+ggplot2
+The graphical grammar
+
+%============================================%
+
+Advanced
+
+ggvis
+Web graphics
+rvest
+Web scraping
+devtools
+Package development
+roxygen2
+Document your functions
+testthat
+Automatic code testing
