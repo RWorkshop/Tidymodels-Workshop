@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{framed}
+\usepackage{graphicx}
+
+\begin{document}
+
+\section{\texttt{stringr}: }
+
+\begin{framed}
+\begin{verbatim}
+library(stringr)
+ 
+names(iris)
+\end{verbatim}
+\end{framed}
+\begin{verbatim}
+[1] "Sepal.Length" "Sepal.Width"  "Petal.Length" 
+[2] "Petal.Width"  "Species"
+\end{verbatim}
+
+\begin{framed}
+\begin{verbatim}
+names(iris) <- str_replace_all(names(iris), "[.]", "_")
+names(iris)
+\end{verbatim}
+\end{framed}
+\begin{verbatim}
+[1] "Sepal_Length" "Sepal_Width"  "Petal_Length" 
+[2] "Petal_Width"  "Species"
+\end{verbatim}
+\begin{framed}
+\begin{verbatim} 
+s <- c("Go to Heaven for the climate, Hell for the company.")
+str_extract_all(s, "[H][a-z]+ ")
+\end{verbatim}
+\end{framed}
+\begin{verbatim}
+[[1]]
+[1] "Heaven " "Hell "  
+\end{verbatim}
+
+
+\end{document}
