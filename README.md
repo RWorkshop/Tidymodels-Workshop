@@ -1,4 +1,4 @@
-Logistic Regression 
+R Workshops 2017
 ==========================
 
-Logistic Regression
+## Introduction to R
