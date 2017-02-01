@@ -1,4 +1,5 @@
 broom: let's tidy up a bit
+==================================================
 
 The broom package takes the messy output of built-in functions in R, such as lm, nls, or t.test, and turns them into tidy data frames.
 
@@ -11,10 +12,8 @@ broom is an attempt to bridge the gap from untidy outputs of predictions and est
 broom should be distinguished from packages like reshape2 and tidyr, which rearrange and reshape data frames into different forms. Those packages perform critical tasks in tidy data analysis but focus on manipulating data frames in one specific format into another. In contrast, broom is designed to take format that is not in a data frame (sometimes not anywhere close) and convert it to a tidy data frame.
 
 Tidying model outputs is not an exact science, and it's based on a judgment of the kinds of values a data scientist typically wants out of a tidy analysis (for instance, estimates, test statistics, and p-values). You may lose some of the information in the original object that you wanted, or keep more information than you need. If you think the tidy output for a model should be changed, or if you're missing a tidying function for an S3 class that you'd like, I strongly encourage you to open an issue or a pull request.
-\end{frame}
-%===============================================================%
-\begin{frame}[fragile]
-Tidying functions
+
+### Tidying functions
 
 This package provides three S3 methods that do three distinct kinds of tidying.
 
@@ -23,9 +22,7 @@ augment: add columns to the original data that was modeled. This includes predic
 glance: construct a concise one-row summary of the model. This typically contains values such as R2, adjusted R2, and residual standard error that are computed once for the entire model.
 Note that some classes may have only one or two of these methods defined.
 
-\end{frame}
-%===============================================================%
-\begin{frame}[fragile]
+
 Consider as an illustrative example a linear fit on the built-in mtcars dataset.
 
 lmfit <- lm(mpg ~ wt, mtcars)
@@ -58,9 +55,7 @@ summary(lmfit)
 ## F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10
 This summary output is useful enough if you just want to read it. However, converting it to a data frame that contains all the same information, so that you can combine it with other models or do further analysis, is not trivial. You have to do coef(summary(lmfit)) to get a matrix of coefficients, the terms are still stored in row names, and the column names are inconsistent with other packages (e.g. Pr(>|t|) compared to p.value).
 
-\end{frame}
-%===============================================================%
-\begin{frame}[fragile]
+
 Instead, you can use the tidy function, from the broom package, on the fit:
 
 library(broom)
@@ -68,15 +63,12 @@ tidy(lmfit)
 ##          term  estimate std.error statistic      p.value
 ## 1 (Intercept) 37.285126  1.877627 19.857575 8.241799e-19
 ## 2          wt -5.344472  0.559101 -9.559044 1.293959e-10
-\end{frame}
-%===============================================================%
-\begin{frame}[fragile]
+
 This gives you a data.frame representation. Note that the row names have been moved into a column called term, and the column names are simple and consistent (and can be accessed using $).
 
 Instead of viewing the coefficients, you might be interested in the fitted values and residuals for each of the original points in the regression. For this, use augment, which augments the original data with information from the model:
-\end{frame}
-%===============================================================%
-\begin{frame}[fragile]
+
+<pre><code>
 head(augment(lmfit))
 ##           .rownames  mpg    wt  .fitted   .se.fit     .resid       .hat
 ## 1         Mazda RX4 21.0 2.620 23.28261 0.6335798 -2.2826106 0.04326896
@@ -92,29 +84,26 @@ head(augment(lmfit))
 ## 4 3.088268 3.020558e-03  0.43275114
 ## 5 3.097722 7.599578e-05 -0.06681879
 ## 6 3.095184 9.210650e-04 -0.23148309
+</code></pre>
 Note that each of the new columns begins with a . (to avoid overwriting any of the original columns).
-\end{frame}
-%===============================================================%
-\begin{frame}[fragile]
+
 Finally, several summary statistics are computed for the entire regression, such as R2 and the F-statistic. These can be accessed with the glance function:
 
+<pre><code>
 glance(lmfit)
 ##   r.squared adj.r.squared    sigma statistic      p.value df    logLik
 ## 1 0.7528328     0.7445939 3.045882  91.37533 1.293959e-10  2 -80.01471
 ##        AIC      BIC deviance df.residual
 ## 1 166.0294 170.4266 278.3219          30
+</code></pre>
 This distinction between the tidy, augment and glance functions is explored in a different context in the k-means vignette.
-\end{frame}
-%===============================================================%
-\begin{frame}[fragile]
-Other Examples
+
+### Other Examples
 
 Generalized linear and non-linear models
 
 These functions apply equally well to the output from glm:
-\end{frame}
-%===============================================================%
-\begin{frame}[fragile]
+<pre><code>
 glmfit <- glm(am ~ wt, mtcars, family="binomial")
 tidy(glmfit)
 ##          term estimate std.error statistic     p.value
@@ -138,10 +127,10 @@ head(augment(glmfit))
 glance(glmfit)
 ##   null.deviance df.null    logLik      AIC      BIC deviance df.residual
 ## 1      43.22973      31 -9.588042 23.17608 26.10756 19.17608          30
+
+</code></pre>
 Note that the statistics computed by glance are different for glm objects than for lm (e.g. deviance rather than R2):
-\end{frame}
-%===============================================================%
-\begin{frame}[fragile]
+
 These functions also work on other fits, such as nonlinear models (nls):
 
 nlsfit <- nls(mpg ~ k / wt + b, mtcars, start=list(k=1, b=0))
@@ -201,34 +190,28 @@ glance(wt)
 ## 1   two.sided
 There is no augment function for htest objects, since there is no meaningful sense in which a hypothesis test produces output about each initial data point.
 
-Conventions
+### Conventions
 
 In order to maintain consistency, we attempt to follow some conventions regarding the structure of returned data.
 
-\end{frame}
-%===============================================================%
-\begin{frame}[fragile]
-All functions
+
+### All functions
 
 The output of the tidy, augment and glance functions is always a data frame.
 The output never has rownames. This ensures that you can combine it with other tidy outputs without fear of losing information (since rownames in R cannot contain duplicates).
 Some column names are kept consistent, so that they can be combined across different models and so that you know what to expect (in contrast to asking “is it pval or PValue?” every time). The examples below are not all the possible column names, nor will all tidy output contain all or even any of these columns.
-\end{frame}
-%===============================================================%
-\begin{frame}[fragile]tidy functions
+tidy functions
 
 Each row in a tidy output typically represents some well-defined concept, such as one term in a regression, one test, or one cluster/class. This meaning varies across models but is usually self-evident. The one thing each row cannot represent is a point in the initial data (for that, use the augment method).
 Common column names include:
 term“” the term in a regression or model that is being estimated.
-p.value: this spelling was chosen (over common alternatives such as pvalue, PValue, or pval) to be consistent with functions in R's built-in stats package
+p.value: this spelling was chosen (over common alternatives such as pvalue, PValue, or pval) to be consistent with functions in ### R s built-in stats package
 statistic a test statistic, usually the one used to compute the p-value. Combining these across many sub-groups is a reliable way to perform (e.g.) bootstrap hypothesis testing
 estimate
 conf.low the low end of a confidence interval on the estimate
 conf.high the high end of a confidence interval on the estimate
 df degrees of freedom
-\end{frame}
-%===============================================================%
-\begin{frame}[fragile]augment functions
+### augment functions
 
 augment(model, data) adds columns to the original data.
 If the data argument is missing, augment attempts to reconstruct the data from the model (note that this may not always be possible, and usually won't contain columns not used in the model).
@@ -239,9 +222,7 @@ Common column names include:
 .fitted: the predicted values, on the same scale as the data.
 .resid: residuals: the actual y values minus the fitted values
 .cluster: cluster assignments
-\end{frame}
-%===============================================================%
-\begin{frame}[fragile]glance functions
+### glance functions
 
 glance always returns a one-row data frame.
 The only exception is that glance(NULL) returns an empty data frame.
