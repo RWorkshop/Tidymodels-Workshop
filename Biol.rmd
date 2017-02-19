@@ -21,10 +21,9 @@ You are asked to use a linear model (e.g. using R's lm() function) to analyse wh
 
 - Create a subset that contains data for only petrol cars
 - transform the variable Consumption (in units of litres per 100 km) using a power transformation with an exponent of 1.7
-- Fit a linear model with a response variable that is the power transformed fuel consumption and an explanatory variable that is a single fixed factor which distinguishes between tax bands
-# From this analysis the estimated difference in the response variable between 
-#tax bands C and E is 9.3 (e.g. using the summary() function) . What is the standard error for this estimate?
-# You should give your answer to 2 significant figures.
+- Fit a linear model with a response variable that is the power transformed fuel consumption and an explanatory variable that is a single fixed factor which distinguishes between tax bands From this analysis the estimated difference in the response variable between tax bands C and E is 9.3 (e.g. using the summary() function) . 
+- What is the standard error for this estimate? You should give your answer to 2 significant figures.
+
 ```{r}
 pet_car = subset(car, Fuel=='Petrol')
 pet_car$trans_con = (pet_car$Consumption)^1.7
@@ -52,15 +51,11 @@ m2 = lm(trans_CO ~ Tax, data = pet_car)
 anova(m2)
 signif(5.5152, digits=2)
 ```
-# Q5: You are asked to use a linear model (e.g. using R's lm() function) to 
-#analyse whether the tax band (tax bands C, D or E) of a diesel car affects a 
-#car's CO emissions.
-# Create a subset that contains data for only diesel cars
-# transform the variable CO (CO emissions in units of g per km) using a power 
-#transformation with an exponent of 0.4
-# Fit a linear model with a response variable that is the power transformed CO 
-#emissions and an explanatory variable that is a single fixed factor which 
-#distinguishes between tax bands
+#### Question 5: 
+You are asked to use a linear model (e.g. using R's lm() function) to analyse whether the tax band (tax bands C, D or E) of a diesel car affects a car's CO emissions.
+- Create a subset that contains data for only diesel cars
+- transform the variable CO (CO emissions in units of g per km) using a power transformation with an exponent of 0.4
+- Fit a linear model with a response variable that is the power transformed CO emissions and an explanatory variable that is a single fixed factor which distinguishes between tax bands
 
 Which of the following statements best describes the outcome of the ANOVA analysis and is suitable for inclusion in a scientific report?
 
@@ -71,8 +66,8 @@ die_car$trans_CO = (die_car$CO)^0.4
 m3 = lm(trans_CO ~ Tax, data = die_car)
 anova(m3)33
 ```
-## answer: For diesel cars, the average CO emissions vary between tax bands 
-#(F2, 680=13.9, p<0.0005).
+answer: For diesel cars, the average CO emissions vary between tax bands 
+(F2, 680=13.9, p<0.0005).
 
 #### Question 6: 
 
@@ -94,19 +89,16 @@ summary(f_m2)
 signif(4.65420, digits=2)
 ```
 #### Question 8: 
-A persons body mass index (BMI) is calculated by dividing their weight #(measured in kg) by the square of their height (measured in metres). It has 
-been proposed that BMI increases with age, and you are asked to test this by 
+A persons body mass index (BMI) is calculated by dividing their weight #(measured in kg) by the square of their height (measured in metres). It has been proposed that BMI increases with age, and you are asked to test this by 
 analysing the data.
 
 Calculate the BMI for each person in the data set (the mean BMI across all people in the data set is 25 kg m-2 to 2 sig. fig.).
 Then power transform your BMI variable using an exponent of -1 (i.e. BMI-1 which in R is calculated by BMI^-1). The transformed BMI will have a mean of 0.04 m2 kg-1).
 
-# Finally fit a linear model with the transformed BMI as the response variable 
-#and age.yr as the continuous explanatory variable.
-# Make sure that your linear model fits an intercept. From the results of your 
-#model, which of the following statements is correct and suitable for a 
-#scientific report?
+Finally fit a linear model with the transformed BMI as the response variable and age.yr as the continuous explanatory variable.
+Make sure that your linear model fits an intercept. From the results of your model, which of the following statements is correct and suitable for a scientific report?
 
+```{r}
 fat$BMI = (fat$weight.kg)/(fat$height.m)^2
 mean(fat$BMI)
 
@@ -116,20 +108,17 @@ mean(fat$trans_BMI)
 f_m3 = lm(trans_BMI~age.yr, data=fat)
 summary(f_m3)
 anova(f_m3)
-## answer: We find evidence of a relationship between a person's BMI and their age 
-#(F1,248=4.2, p=0.042). The relationship between BMI (kg m-2) and age (years) is 
-#estimated to be BMI-1 = 0.043 - 0.000052 age.
+```
+
+ answer: We find evidence of a relationship between a person's BMI and their age (F1,248=4.2, p=0.042). The relationship between BMI (kg m-2) and age (years) is estimated to be BMI-1 = 0.043 - 0.000052 age.
 
 
-# Q9: To answer this question you should use the dataset SURGERY2.CSV, available on 
-#Blackboard. You can assume that this dataset is free from errors.
-# You are asked to analyse whether the rate of eyelid surgeries (number per year) has 
-#been been changing between years.
-- Using a subset of the data corresponding to Gender=female and surgery Type=Eyelid, 
-#perform a goodness of fit chi-squared test on the number of eyelid surgeries performed 
-#per year from 2008 to 2012.
-- If the rate of eyelid surgeries were constant, what would be the expected number of 
-#eyelid surgeries per year?
+#### Question 9: 
+To answer this question you should use the dataset SURGERY2.CSV, available on Blackboard. You can assume that this dataset is free from errors.
+
+You are asked to analyse whether the rate of eyelid surgeries (number per year) has been been changing between years.
+- Using a subset of the data corresponding to Gender=female and surgery Type=Eyelid, perform a goodness of fit chi-squared test on the number of eyelid surgeries performed per year from 2008 to 2012.
+- If the rate of eyelid surgeries were constant, what would be the expected number of eyelid surgeries per year?
 
 ```{r}
 surgery = read.csv(file="SURGERY2.CSV")
@@ -144,12 +133,13 @@ s_m1$expected
 
 #### Question 10: 
 You are asked to analyse whether the rate of brow surgeries (quantified as number 
-#per year) has been changing between years.
-# Using a subset of the data corresponding to Gender=female and surgery Type=Brow, perform 
-#a goodness of fit chi-squared test on the number of brow surgeries performed per year from 
-#2008 to 2012.
-# Which of the following sentences would be the most appropriate description of this 
-#goodness of fit test for a scientific report?
+per year) has been changing between years.
+ Using a subset of the data corresponding to Gender=female and surgery Type=Brow, perform 
+a goodness of fit chi-squared test on the number of brow surgeries performed per year from 
+2008 to 2012.
+ Which of the following sentences would be the most appropriate description of this 
+goodness of fit test for a scientific report?
+
 ```{r}
 surg_sub2 = subset(surgery, Gender=='female' & Type=='Brow')
 table(surg_sub2$Count)
