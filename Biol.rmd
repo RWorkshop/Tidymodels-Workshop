@@ -21,7 +21,7 @@ You are asked to use a linear model (e.g. using R's lm() function) to analyse wh
 
 - Create a subset that contains data for only petrol cars
 - transform the variable Consumption (in units of litres per 100 km) using a power transformation with an exponent of 1.7
-- Fit a linear model with a response variable that is the power transformed fuel consumption and an explanatory variable that is a single fixed factor which distinguishes between tax bands From this analysis the estimated difference in the response variable between tax bands C and E is 9.3 (e.g. using the summary() function) . 
+- Fit a linear model with a response variable that is the power transformed fuel consumption and an explanatory variable that is a single fixed factor which distinguishes between tax bands From this analysis the estimated difference in the response variable between tax bands C and E is 9.3 (e.g. using the ``summary()`` function) . 
 - What is the standard error for this estimate? You should give your answer to 2 significant figures.
 
 ```{r}
@@ -93,7 +93,7 @@ A persons body mass index (BMI) is calculated by dividing their weight #(measure
 analysing the data.
 
 Calculate the BMI for each person in the data set (the mean BMI across all people in the data set is 25 kg m-2 to 2 sig. fig.).
-Then power transform your BMI variable using an exponent of -1 (i.e. BMI-1 which in R is calculated by BMI^-1). The transformed BMI will have a mean of 0.04 m2 kg-1).
+Then power transform your BMI variable using an exponent of -1 (i.e. BMI-1 which in R is calculated by ***BMI^-1`***). The transformed BMI will have a mean of 0.04 m2 kg-1).
 
 Finally fit a linear model with the transformed BMI as the response variable and age.yr as the continuous explanatory variable.
 Make sure that your linear model fits an intercept. From the results of your model, which of the following statements is correct and suitable for a scientific report?
@@ -110,11 +110,11 @@ summary(f_m3)
 anova(f_m3)
 ```
 
- answer: We find evidence of a relationship between a person's BMI and their age (F1,248=4.2, p=0.042). The relationship between BMI (kg m-2) and age (years) is estimated to be BMI-1 = 0.043 - 0.000052 age.
+ answer: We find evidence of a relationship between a persons BMI and their age (F1,248=4.2, p=0.042). The relationship between BMI (kg m-2) and age (years) is estimated to be BMI-1 = 0.043 - 0.000052 age.
 
 
 #### Question 9: 
-To answer this question you should use the dataset SURGERY2.CSV, available on Blackboard. You can assume that this dataset is free from errors.
+*To answer this question you should use the dataset SURGERY2.CSV, available on Blackboard. You can assume that this dataset is free from errors.*
 
 You are asked to analyse whether the rate of eyelid surgeries (number per year) has been been changing between years.
 - Using a subset of the data corresponding to Gender=female and surgery Type=Eyelid, perform a goodness of fit chi-squared test on the number of eyelid surgeries performed per year from 2008 to 2012.
@@ -132,13 +132,10 @@ s_m1$expected
 ```
 
 #### Question 10: 
-You are asked to analyse whether the rate of brow surgeries (quantified as number 
-per year) has been changing between years.
- Using a subset of the data corresponding to Gender=female and surgery Type=Brow, perform 
-a goodness of fit chi-squared test on the number of brow surgeries performed per year from 
-2008 to 2012.
- Which of the following sentences would be the most appropriate description of this 
-goodness of fit test for a scientific report?
+
+You are asked to analyse whether the rate of brow surgeries (quantified as number per year) has been changing between years.
+- Using a subset of the data corresponding to ***Gender=female*** and surgery ***Type=Brow***, perform a goodness of fit chi-squared test on the number of brow surgeries performed per year from 2008 to 2012.
+- Which of the following sentences would be the most appropriate description of this goodness of fit test for a scientific report?
 
 ```{r}
 surg_sub2 = subset(surgery, Gender=='female' & Type=='Brow')
