@@ -35,9 +35,9 @@ signif(0.1547, digits=2)
 
 #### Question 4: 
 
-To answer this question you should use the dataset CAR_EMISSION.CSV, 
-available on Blackboard. You can assume that this dataset is free from errors.
- You are asked to use a linear model (e.g. using R's lm() function) to analyse whether the tax band (tax bands C, D or E) of a petrol car affects a car's CO emissions.
+*To answer this question you should use the dataset CAR_EMISSION.CSV, available on Blackboard. You can assume that this dataset is free from errors.*
+
+- You are asked to use a linear model (e.g. using R's `lm()` function) to analyse whether the tax band (tax bands C, D or E) of a petrol car affects a car's CO emissions.
 - Create a subset that contains data for only petrol cars
 - transform the variable CO (CO emissions in units of g per km) using a power transformation with an exponent of 0.7
 - Fit a linear model with a response variable that is the power transformed CO emissions and an explanatory variable that is a single fixed factor which distinguishes between tax bands
@@ -52,7 +52,8 @@ anova(m2)
 signif(5.5152, digits=2)
 ```
 #### Question 5: 
-You are asked to use a linear model (e.g. using R's lm() function) to analyse whether the tax band (tax bands C, D or E) of a diesel car affects a car's CO emissions.
+You are asked to use a linear model (e.g. using R's `lm()` function) to analyse whether the tax band (tax bands C, D or E) of a diesel car affects a car's CO emissions.
+
 - Create a subset that contains data for only diesel cars
 - transform the variable CO (CO emissions in units of g per km) using a power transformation with an exponent of 0.4
 - Fit a linear model with a response variable that is the power transformed CO emissions and an explanatory variable that is a single fixed factor which distinguishes between tax bands
@@ -110,7 +111,11 @@ summary(f_m3)
 anova(f_m3)
 ```
 
- answer: We find evidence of a relationship between a persons BMI and their age (F1,248=4.2, p=0.042). The relationship between BMI (kg m-2) and age (years) is estimated to be BMI-1 = 0.043 - 0.000052 age.
+ **Answer: **
+ 
+ We find evidence of a relationship between a persons BMI and their age (F1,248=4.2, p=0.042). 
+ 
+ The relationship between BMI (kg m-2) and age (years) is estimated to be BMI-1 = 0.043 - 0.000052 age.
 
 
 #### Question 9: 
