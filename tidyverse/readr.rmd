@@ -1,7 +1,11 @@
 
 readr
 ======================================
-The goal of readr is to provide a fast and friendly way to read tabular data into R.  
+
+The goal of readr is to provide a fast and friendly way to read rectangular data (like csv, tsv, and fwf). It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes. 
+The goal of ***readr*** is to provide a fast and friendly way to read tabular data into R.  
+
+<hr>
 
 The most important functions are:
 
@@ -10,6 +14,16 @@ The most important functions are:
 - Read lines: `read_lines()`.
 - Read whole file: `read_file()`.
 - Re-parse existing data frame: `type_convert()`.
+
+
+readr supports seven file formats with seven `read_` functions:
+
+- `read_csv()`: comma separated (CSV) files
+- `read_tsv()`: tab separated files
+- `read_delim()`: general delimited files
+- `read_fwf()`: fixed width files
+- `read_table()`: tabular files where colums are separated by white-space.
+- `read_log()`: web log files
 
 #### Installation
 
