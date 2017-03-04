@@ -5,11 +5,11 @@ The goal of readr is to provide a fast and friendly way to read tabular data int
 
 The most important functions are:
 
-- Read delimited files: read_delim(), read_csv(), read_tsv(), read_csv2().
-- Read fixed width files: read_fwf(), read_table().
-- Read lines: read_lines().
-- Read whole file: read_file().
-- Re-parse existing data frame: type_convert().
+- Read delimited files: `read_delim()`, `read_csv()`, `read_tsv()`, `read_csv2()`.
+- Read fixed width files: `read_fwf()`, `read_table()`.
+- Read lines: `read_lines()`.
+- Read whole file: `read_file()`.
+- Re-parse existing data frame: `type_convert()`.
 
 #### Installation
 
@@ -38,16 +38,17 @@ read_lines(mtcars_path)
 # Read whole file into a single string
 read_file(mtcars_path)
 ```
-See vignette("column-types") on how readr parses columns, and how you can override the defaults.
 
 #### Output
 
-- read_csv() produces a data frame with the following properties:
+- `read_csv()` produces a data frame with the following properties:
 
-- Characters are never automatically converted to factors (i.e. no more stringsAsFactors = FALSE).
+- Characters are never automatically converted to factors (i.e. no more `stringsAsFactors = FALSE`).
 
-- Valid column names are left as is, not munged into valid R identifiers (i.e. there is no check.names = TRUE). Missing column names are filled in with X1, X2 etc, and duplicated column names are deduplicated.
+- Valid column names are left as is, not munged into valid R identifiers (i.e. there is no `check.names = TRUE`). 
 
-- The data frame is given class c("tbl_df", "tbl", "data.frame") so if you also use dplyr you'll get an enhanced display.
+- Missing column names are filled in with X1, X2 etc, and duplicated column names are deduplicated.
+
+- The data frame is given class `c("tbl_df", "tbl", "data.frame")` so if you also use dplyr you'll get an enhanced display.
 
 - Row names are never set.
