@@ -24,7 +24,7 @@ Note that some classes may have only one or two of these methods defined.
 
 
 Consider as an illustrative example a linear fit on the built-in mtcars dataset.
-
+```{r}
 lmfit <- lm(mpg ~ wt, mtcars)
 lmfit
 ## 
@@ -104,7 +104,7 @@ This distinction between the tidy, augment and glance functions is explored in a
 Generalized linear and non-linear models
 
 These functions apply equally well to the output from glm:
-<pre><code>
+```{r}
 glmfit <- glm(am ~ wt, mtcars, family="binomial")
 tidy(glmfit)
 ##          term estimate std.error statistic     p.value
@@ -167,23 +167,25 @@ glance(nlsfit)
 #### Hypothesis testing
 
 The tidy function can also be applied to htest objects, such as those output by popular built-in functions like t.test, cor.test, and wilcox.test.
-
+```{r}
 tt <- t.test(wt ~ am, mtcars)
 tidy(tt)
 ##   estimate estimate1 estimate2 statistic     p.value parameter  conf.low
 ## 1 1.357895  3.768895     2.411  5.493905 6.27202e-06  29.23352 0.8525632
 ##   conf.high                  method alternative
 ## 1  1.863226 Welch Two Sample t-test   two.sided
+```
 Some cases might have fewer columns (for example, no confidence interval):
-
+```{r}
 wt <- wilcox.test(wt ~ am, mtcars)
 tidy(wt)
 ##   statistic      p.value                                            method
 ## 1     230.5 4.347026e-05 Wilcoxon rank sum test with continuity correction
 ##   alternative
 ## 1   two.sided
+```
 Since the tidy output is already only one row, glance returns the same output:
-
+```{r}
 glance(tt)
 ##   estimate estimate1 estimate2 statistic     p.value parameter  conf.low
 ## 1 1.357895  3.768895     2.411  5.493905 6.27202e-06  29.23352 0.8525632
@@ -194,6 +196,7 @@ glance(wt)
 ## 1     230.5 4.347026e-05 Wilcoxon rank sum test with continuity correction
 ##   alternative
 ## 1   two.sided
+```
 There is no augment function for htest objects, since there is no meaningful sense in which a hypothesis test produces output about each initial data point.
 
 ### Conventions
@@ -224,6 +227,7 @@ If the data argument is missing, augment attempts to reconstruct the data from t
 Each row in an augment output matches the corresponding row in the original data.
 If the original data contained rownames, augment turns them into a column called .rownames.
 Newly added column names begin with . to avoid overwriting columns in the original data.
+
 Common column names include:
 .fitted: the predicted values, on the same scale as the data.
 .resid: residuals: the actual y values minus the fitted values
@@ -233,6 +237,7 @@ Common column names include:
 glance always returns a one-row data frame.
 The only exception is that glance(NULL) returns an empty data frame.
 We avoid including arguments that were given to the modeling function. For example, a glm glance output does not need to contain a field for family, since that is decided by the user calling glm rather than the modeling function itself.
+
 Common column names include:
 r.squared the fraction of variance explained by the model
 adj.r.squared R2 adjusted based on the degrees of freedom
