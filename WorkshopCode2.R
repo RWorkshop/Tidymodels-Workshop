@@ -50,42 +50,8 @@ library(ggplot2)
 # diamonds
 data(midwest)
 data(diamonds) 
-# dim()
-# names()
-# class()
-# summary()
-# nrow()
-# ordinal : ranking
-glimpse(diamonds)
-# table(diamonds$color)
- table(diamonds$color)
-# filter to only D,E and F colours
-# diamonds2
-diamonds2 <- diamonds %>% filter(color %in% c("D","E","F"))
- table(diamonds2$cut)
- table(diamonds2$color)
-# forcats
-head(diamonds2)
-# interested in numeric variable: depth
-# based on cut and color
-# summarize : mean depth for each combination of
-#     cut and color
-# diamonds2 %>% group_by(cut,color) %>% summarize(
-diamonds2 %>% group_by(cut,color) %>% summarize(
-   mean.depth = mean(depth))
-diamonds2 %>% group_by(cut,color) %>% summarize(
-   mean.depth = mean(depth)) %>% head(10)
-diamonds2 %>% group_by(cut,color) %>% summarize(
-   mean.depth = mean(depth)) %>% 
-   spread(color,mean.depth)
-# library: xtable : creates latex code for tables
-diamonds2 %>% group_by(cut,color) %>% summarize(
-   mean.depth = mean(depth)) 
-diamonds.report <- diamonds2 %>% group_by(cut,color) %>% summarize(
-   mean.depth = mean(depth)) 
-head(diamonds.report)
 #
-# ggplot2
+#
 # histograms
 # violinplots and boxplots
 # barcharts
