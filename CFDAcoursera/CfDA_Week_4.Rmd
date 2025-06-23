@@ -1,0 +1,46 @@
+---
+title: "Computing for Data Analysis - Week 4"
+output: html_document
+---
+
+## The `grep()` Function
+
+What does the `grep()` function do when called with its default arguments?
+
+> It returns the indices for strings in a character vector that match a given regular expression.
+
+---
+
+## Regular Expressions
+
+**Question 7**
+
+```r
+^s(.*?)r
+```
+
+This expression matches substrings that start with `s`, end with `r`, and capture anything in between (non-greedy).
+
+---
+
+## Generic Functions
+
+**Question 8**
+
+In the R system of classes and methods, what is a generic function?
+
+A generic function is a function that dispatches to specific methods depending on the class of its input argument(s).
+
+---
+
+## S4 Methods
+
+What function is used to obtain the function body for an S4 method function?
+
+> Not `getS3method()`.
+
+To work with S4 method definitions, you typically use functions like `getMethod()` and `showMethods()`.
+
+What does the `setOldClass()` function do?
+
+> It registers an existing S3 class as an S4 class so that S4 methods can be written for it.
